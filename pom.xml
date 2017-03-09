@@ -19,7 +19,7 @@
         <url>http://www.spring.io</url>
     </organization>
     <properties>
-        <start-class>com.activity.SampleWebJspApplication</start-class>
+        <start-class>SampleWebJspApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -45,7 +45,6 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
-            <version>7.0.68</version>
             <!--<scope>provided</scope>-->
         </dependency>
         <dependency>

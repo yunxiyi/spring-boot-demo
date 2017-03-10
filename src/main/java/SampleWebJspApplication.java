@@ -18,6 +18,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -31,31 +32,34 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("cn.edu.nwsuaf.controller")
 public class SampleWebJspApplication extends SpringBootServletInitializer {
 
-	private static Logger logger = Logger.getLogger(SampleWebJspApplication.class);
+	private static Logger log = Logger.getLogger(SampleWebJspApplication.class);
+	private String LOCATION_PATTERN = "classpath:/mapper/*.xml";
+	private String TYPE_ALIASES_PACKAGE = "cn.edu.nwsuaf.dao";
 
 	//DataSource配置
-	@Bean
-	@ConfigurationProperties(prefix="spring.datasource")
-	public DataSource dataSource() {
-		return new org.apache.tomcat.jdbc.pool.DataSource();
-	}
+//	@Bean
+//	@ConfigurationProperties(prefix="spring.datasource")
+//	public DataSource dataSource() {
+//		return new org.apache.tomcat.jdbc.pool.DataSource();
+//	}
 
 	//提供SqlSeesion
-	@Bean
-	public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource());
-
-		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-
-		sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*.xml"));
-
-		return sqlSessionFactoryBean.getObject();
-	}
+//	@Bean
+//	public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
+//
+//		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+//		sqlSessionFactoryBean.setDataSource(dataSource());
+//
+//		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+//
+//		sqlSessionFactoryBean.setMapperLocations(resolver.getResources(LOCATION_PATTERN));
+//
+//		sqlSessionFactoryBean.setTypeAliasesPackage(TYPE_ALIASES_PACKAGE);
+//
+//		return sqlSessionFactoryBean.getObject();
+//	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -64,6 +68,7 @@ public class SampleWebJspApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SampleWebJspApplication.class, args);
+		log.info(" sample web jsp application start");
 	}
 
 }

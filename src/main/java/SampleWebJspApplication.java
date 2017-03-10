@@ -31,31 +31,13 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("cn.edu.nwsuaf.controller")
+@ComponentScan("cn.edu.nwsuaf.*")
 public class SampleWebJspApplication extends SpringBootServletInitializer {
 
 	private static Logger logger = Logger.getLogger(SampleWebJspApplication.class);
 
 	//DataSource配置
-	@Bean
-	@ConfigurationProperties(prefix="spring.datasource")
-	public DataSource dataSource() {
-		return new org.apache.tomcat.jdbc.pool.DataSource();
-	}
 
-	//提供SqlSeesion
-	@Bean
-	public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource());
-
-		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-
-		sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*.xml"));
-
-		return sqlSessionFactoryBean.getObject();
-	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

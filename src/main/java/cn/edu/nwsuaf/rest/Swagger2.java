@@ -1,3 +1,5 @@
+package cn.edu.nwsuaf.rest;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -20,17 +22,17 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.didispace.web"))
+                .apis(RequestHandlerSelectors.basePackage("cn.edu.nwsuaf.rest"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs")
-                .description("更多Spring Boot相关文章请关注：http://blog.didispace.com/")
-                .termsOfServiceUrl("http://blog.didispace.com/")
-                .contact("程序猿DD")
+                .title("Spring Boot中使用Swagger2构建RESTful API")
+                .description("提供接口")
+                .termsOfServiceUrl("http://localhost:8080/")
+                .contact("cn.edu.nwsuaf")
                 .version("1.0")
                 .build();
     }

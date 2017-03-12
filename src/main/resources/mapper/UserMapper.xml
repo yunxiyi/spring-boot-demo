@@ -2,8 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nwsuaf.dao.UserMapper">
 
-    <select id="findUserInfo" resultType="cn.edu.nwsuaf.model.User">
-        select name, age,password from user;
+    <resultMap id="userMap" type="cn.edu.nwsuaf.model.User">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+        <result column="age" property="age" />
+        <result column="email" property="email" />
+    </resultMap>
+    <sql id="Base_Info" >
+        id, name, password, age, email
+    </sql>
+    <select id="findUserInfo" resultMap="userMap">
+        select
+        <include refid="Base_Info" />
+        from user;
+    </select>
+
+    <select id="selectByPrimaryId" resultMap="userMap" parameterType="Long">
+        select
+        <include refid="Base_Info" />
+        from user where id = #{id}
     </select>
 
 </mapper>

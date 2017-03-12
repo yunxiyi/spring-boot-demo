@@ -6,6 +6,8 @@ import cn.edu.nwsuaf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by huangrongchao on 2017/3/10.
  */
@@ -16,7 +18,12 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public User findUserInfo() {
+    public List<User> findUserInfo() {
         return userMapper.findUserInfo();
+    }
+
+    @Override
+    public User selectByPrimaryId(long id) {
+        return userMapper.selectByPrimaryId(id);
     }
 }

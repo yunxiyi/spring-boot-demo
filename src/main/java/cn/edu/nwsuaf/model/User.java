@@ -4,9 +4,19 @@ package cn.edu.nwsuaf.model;
  * Created by huangrongchao on 2017/3/9.
  */
 public class User {
+    private Long id;
     private String name;
-    private int age;
     private String password;
+    private int age;
+    private String email;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -30,5 +40,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

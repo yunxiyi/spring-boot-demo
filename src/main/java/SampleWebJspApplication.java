@@ -46,6 +46,8 @@ public class SampleWebJspApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SampleWebJspApplication.class, args);
+		logger.info(SampleWebJspApplication.class.getSimpleName() + " is started ");
+
 	}
 
 }

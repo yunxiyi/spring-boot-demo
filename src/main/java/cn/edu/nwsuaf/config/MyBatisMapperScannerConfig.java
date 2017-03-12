@@ -1,4 +1,4 @@
-package cn.edu.nwsuaf.controller;
+package cn.edu.nwsuaf.config;
 
 import cn.edu.nwsuaf.config.MybatisConfig;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;

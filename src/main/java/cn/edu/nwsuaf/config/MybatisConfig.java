@@ -1,6 +1,7 @@
 package cn.edu.nwsuaf.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.log4j.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -25,10 +26,12 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @AutoConfigureAfter(DataSourceConfig.class)
 public class MybatisConfig  implements TransactionManagementConfigurer {
 
+    Logger log = Logger.getLogger(MybatisConfig.class);
+
     @Bean(name = "dataSource")
     @ConfigurationProperties(prefix="spring.datasource")
     public javax.sql.DataSource dataSource() {
-        return new org.apache.tomcat.jdbc.pool.DataSource();
+        return new DataSource();
     }
 
     @Bean(name = "sqlSessionFactory")
@@ -56,6 +59,7 @@ public class MybatisConfig  implements TransactionManagementConfigurer {
             return bean.getObject();
         } catch (Exception e) {
             e.printStackTrace();
+            log.error("mybatis initail failed : " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
